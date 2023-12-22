@@ -19,9 +19,9 @@ type
     StringGrid1: TStringGrid;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-  private
-
-  public
+    private
+      procedure FillRow(ticksValue: LongInt; row: Integer);
+    public
 
   end;
 
@@ -42,12 +42,23 @@ implementation
 { TForm1 }
 function Fact(n: TLargeInteger): TLargeInteger;
 var
-  s: TLargeInteger;
+  f: TLargeInteger;
   i: LongInt;
 begin
-  i := 1;
+  f := 1;
   for i := 2 to n do
-    s := s * i;
+    f := f * i;
+  Fact := f;
+end;
+
+procedure TForm1.FillRow(ticksValue: LongInt; row: Integer);
+var
+  OperationsPerSecond: extended;
+begin
+  OperationsPerSecond := Round(CounterPerSec * 1000 / ticks);
+  StringGrid1.Cells[1, row] := FormatFloat('0.###', OperationsPerSecond);
+  StringGrid1.Cells[2, row] := FormatFloat('0.###', OperationsPerSecond * 60);
+  StringGrid1.Cells[3, row] := FormatFloat('0.###', OperationsPerSecond * 3600);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
