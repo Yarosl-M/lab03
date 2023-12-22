@@ -106,7 +106,7 @@ begin
   StringGrid1.Cells[1,9]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,9]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,9]:=(3600*OperationPerSec).ToString;
-  ScaleBy(10, 20);
+  //ScaleBy(10, 20);
 end;
 //
 //procedure TForm1.Button3Click(Sender: TObject);

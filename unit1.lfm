@@ -31,6 +31,7 @@ object Form1: TForm1
     Height = 144
     Top = 24
     Width = 410
+    RowCount = 10
     TabOrder = 2
   end
   object Label1: TLabel
