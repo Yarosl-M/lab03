@@ -65,20 +65,21 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(CounterPerSec);
   QueryPerformanceCounter(TStart);
-  for n:= 0 to 1000 do
+  for n := 0 to 1000 do
   begin
-  m:=n;
+  m := n;
   end;
+
   QueryPerformanceCounter(TStop);
 
-  ticks:=TStop-TStart;
+  ticks := TStop - TStart;
 
-  OperationPerSec:=Round(CounterPerSec*1000/ticks);
-  StringGrid1.Cells[1,3]:=OperationPerSec.ToString;
-  StringGrid1.Cells[2,3]:=(OperationPerSec*60).ToString;
-  StringGrid1.Cells[3,3]:=(OperationPerSec*3600).ToString;
+  OperationPerSec:=Round(CounterPerSec * 1000 / ticks);
+  StringGrid1.Cells[1,3] := OperationPerSec.ToString;
+  StringGrid1.Cells[2,3] := (OperationPerSec * 60).ToString;
+  StringGrid1.Cells[3,3] := (OperationPerSec * 3600).ToString;
 
-  OperationPerSec:=Round(CounterPerSec*1000/ln(ticks));
+  OperationPerSec:=Round(CounterPerSec * 1000 / ln(ticks));
   StringGrid1.Cells[1,1]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,1]:=Round(OperationPerSec*60).ToString;
   StringGrid1.Cells[3,1]:=Round(OperationPerSec*3600).ToString;
