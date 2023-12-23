@@ -11,7 +11,7 @@ object Form1: TForm1
   object Button1: TButton
     Left = 80
     Height = 31
-    Top = 320
+    Top = 280
     Width = 94
     Caption = 'Вычислить'
     OnClick = Button1Click
@@ -20,7 +20,7 @@ object Form1: TForm1
   object Button2: TButton
     Left = 424
     Height = 31
-    Top = 320
+    Top = 280
     Width = 94
     Caption = 'График'
     OnClick = Button2Click
@@ -28,10 +28,10 @@ object Form1: TForm1
   end
   object StringGrid1: TStringGrid
     Left = 40
-    Height = 280
+    Height = 248
     Top = 24
     Width = 632
-    RowCount = 10
+    RowCount = 9
     TabOrder = 2
     ColWidths = (
       80
