@@ -7,6 +7,7 @@ object Form1: TForm1
   ClientHeight = 390
   ClientWidth = 1312
   DesignTimePPI = 120
+  OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object Button1: TButton
     Left = 80
@@ -96,5 +97,12 @@ object Form1: TForm1
     Color = clWhite
     ParentColor = False
     TabOrder = 3
+  end
+  object Timer: TEpikTimer
+    StringPrecision = 6
+    TimebaseSource = SystemTimebase
+    CorrelationMode = OnTimebaseSelect
+    Left = 8
+    Top = 8
   end
 end
