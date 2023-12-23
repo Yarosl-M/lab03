@@ -94,30 +94,26 @@ begin
   StringGrid1.Cells[2,4]:=Round(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,4]:=Round(3600*OperationPerSec).ToString;
 
-  OperationPerSec:=Round(CounterPerSec*1000/sqr(ticks));
+  OperationPerSec:=Round(CounterPerSec*1000/(ticks * ticks));
   StringGrid1.Cells[1,5]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,5]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,5]:=(3600*OperationPerSec).ToString;
 
-  OperationPerSec:=Round(CounterPerSec*1000/(sqr(ticks)+ticks));
+  OperationPerSec:=Round(CounterPerSec*1000/(ticks * ticks * ticks));
   StringGrid1.Cells[1,6]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,6]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,6]:=(3600*OperationPerSec).ToString;
 
-  OperationPerSec:=Round(CounterPerSec*1000/(sqr(ticks)*ticks));
+
+  OperationPerSec:=Round(CounterPerSec*1000/(exp(ticks*ln(2))));
   StringGrid1.Cells[1,7]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,7]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,7]:=(3600*OperationPerSec).ToString;
 
-  OperationPerSec:=Round(CounterPerSec*1000/(exp(ticks*ln(2))));
+  OperationPerSec:=CounterPerSec*1000/Fact(ticks);
   StringGrid1.Cells[1,8]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,8]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,8]:=(3600*OperationPerSec).ToString;
-
-  OperationPerSec:=CounterPerSec*1000/Fact(ticks);
-  StringGrid1.Cells[1,9]:=OperationPerSec.ToString;
-  StringGrid1.Cells[2,9]:=(60*OperationPerSec).ToString;
-  StringGrid1.Cells[3,9]:=(3600*OperationPerSec).ToString;
   //ScaleBy(10, 20);
 end;
 //
