@@ -31,6 +31,8 @@ object Form1: TForm1
     Height = 248
     Top = 24
     Width = 632
+    ColCount = 4
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll, goCellEllipsis]
     RowCount = 9
     TabOrder = 2
     ColWidths = (
@@ -38,7 +40,6 @@ object Form1: TForm1
       146
       145
       138
-      115
     )
     Cells = (
       11

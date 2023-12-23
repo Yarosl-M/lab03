@@ -40,7 +40,7 @@ implementation
 {$R *.lfm}
 
 { TForm1 }
-function Fact(n: TLargeInteger): TLargeInteger;
+function Factorial(n: TLargeInteger): TLargeInteger;
 var
   f: TLargeInteger;
   i: LongInt;
@@ -48,7 +48,7 @@ begin
   f := 1;
   for i := 2 to n do
     f := f * i;
-  Fact := f;
+  Factorial := f;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -100,7 +100,7 @@ begin
   StringGrid1.Cells[2,7]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,7]:=(3600*OperationPerSec).ToString;
 
-  OperationPerSec:=CounterPerSec*1000/Fact(ticks);
+  OperationPerSec:=CounterPerSec*1000/Factorial(ticks);
   StringGrid1.Cells[1,8]:=OperationPerSec.ToString;
   StringGrid1.Cells[2,8]:=(60*OperationPerSec).ToString;
   StringGrid1.Cells[3,8]:=(3600*OperationPerSec).ToString;
