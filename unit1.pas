@@ -42,12 +42,12 @@ implementation
 {$R *.lfm}
 
 { TForm1 }
-function Factorial(n: TLargeInteger): TLargeInteger;
+function Factorial(n: TLargeInteger): extended;
 var
-  f: TLargeInteger;
+  f: extended;
   i: LongInt;
 begin
-  f := 1;
+  f := 1.0;
   for i := 2 to n do
     f := f * i;
   Factorial := f;
@@ -86,11 +86,18 @@ begin
   ms, ms * ln(ms), ms * ms, ms * ms * ms, exp(ms * ln(2)),
   Factorial(Round(ms))];
 
-  exit;
+  showmessage(round(ms).tostring);
+
   for i := 0 to 7 do
   begin
-    Table.Cells[1, i] := inttostr(i);
-    Table.Cells[1, i + 1] := '3'; floattostr(arr[i]);
+    if (i < 6) then
+    begin
+      Table.Cells[1, i + 1] := FormatFloat('0.###', arr[i]);
+    end
+    else
+    begin
+      Table.Cells[1, i + 1] := FormatFloat('0.0000E+', arr[i]);
+    end;
   end;
 
   exit;
