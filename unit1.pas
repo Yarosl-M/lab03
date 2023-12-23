@@ -56,9 +56,10 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 var
   discard: integer;
-  timeElapsed, microseconds, speed: extended;
+  timeElapsed, microseconds, ms: extended;
   i: integer;
   PerSecond, PerMinute, PerHour: Int64;
+  arr: array of Extended;
 begin
   timer.Clear;
   timer.Start;
@@ -72,18 +73,25 @@ begin
   microseconds := timeElapsed * 1000000.0;
 
   // число операций за 1 микросекунду
-  speed := 1000 / microseconds;
+  ms := 1000 / microseconds;
 
   // число операций за 1 секунду
-  perSecond := Round(speed * 1000000);
-  showmessage(inttostr(persecond));
+  perSecond := Round(ms * 1000000);
 
   // за 1 минуту и за 1 час
-  perMinute := Round(speed * 1000000 * 60);
-  perHour := Round(speed * 1000000 * 3600);
-  showmessage(inttostr(perminute));
-  showmessage(inttostr(perhour));
+  perMinute := Round(ms * 1000000 * 60);
+  perHour := Round(ms * 1000000 * 3600);
 
+  arr := [ln(ms), sqrt(ms),
+  ms, ms * ln(ms), ms * ms, ms * ms * ms, exp(ms * ln(2)),
+  Factorial(Round(ms))];
+
+  exit;
+  for i := 0 to 7 do
+  begin
+    Table.Cells[1, i] := inttostr(i);
+    Table.Cells[1, i + 1] := '3'; floattostr(arr[i]);
+  end;
 
   exit;
 
