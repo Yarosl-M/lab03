@@ -22,6 +22,7 @@ type
     procedure Button2Click(Sender: TObject);
     private
       procedure FillRow(ticksValue: LongInt; row: Integer);
+      procedure FillRow(ticksFValue: Extended; row: Integer);
     public
 
   end;
@@ -62,6 +63,11 @@ begin
   StringGrid1.Cells[3, row] := FormatFloat('0.###', OperationsPerSecond * 3600);
 end;
 
+procedure TForm1.FillRow(ticksFValue: extended; row: Integer);
+begin
+  FillRow(Round(ticksFValue), row);
+end;
+
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(CounterPerSec);
@@ -75,6 +81,16 @@ begin
 
   ticks := TStop - TStart;
 
+  FillRow(ln(ticks), 1);
+  FillRow(sqrt(ticks), 2);
+  FillRow(ticks, 3);
+  FillRow(n * ln(ticks), 4);
+  FillRow(ticks * ticks, 5);
+  FillRow(ticks * ticks * ticks, 6);
+  FillRow(exp(ticks * ln(2)), 7);
+  FillRow(Fact(ticks), 8);
+
+  Exit;
   OperationPerSec:=Round(CounterPerSec * 1000 / ticks);
   StringGrid1.Cells[1,3] := OperationPerSec.ToString;
   StringGrid1.Cells[2,3] := (OperationPerSec * 60).ToString;
