@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs,
-  Grids, StdCtrls, ExtCtrls, EpikTimer, Windows, GraphType;
+  Grids, StdCtrls, ExtCtrls, EpikTimer, Windows, GraphType, Math;
 
 type
 
@@ -56,49 +56,66 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 var
   discard: integer;
-  timeElapsed, microseconds, ms: extended;
-  i: integer;
-  PerSecond, PerMinute, PerHour: Int64;
+  timeElapsed, microseconds, perMs, OneTime: extended;
+  i: LongInt;
+  PerMicrosecond, PerSecond, PerMinute, PerHour: Int64;
   arr: array of Extended;
+  p: extended;
 begin
   timer.Clear;
   timer.Start;
   for i := 1 to 1000 do
   begin
-    m := i;
+    arr := [i];
+    arr := [i];
+    arr := [i];
   end;
   timer.Stop;
   timeElapsed := timer.Elapsed;
 
+  // времени на 1000 операций, мкс
   microseconds := timeElapsed * 1000000.0;
 
-  // число операций за 1 микросекунду
-  ms := 1000 / microseconds;
+  // времени на одну операцию, мкс
+  OneTime := microseconds / 1000;
 
-  // число операций за 1 секунду
-  perSecond := Round(ms * 1000000);
+  // количество операций за 1 мкс
+  PerMs := 1 / OneTime;
+  showmessage(PerMs.tostring);
+  // количество операций за 1 секунду
+  PerSecond := Round(1 / (OneTime / 1000000));
 
-  // за 1 минуту и за 1 час
-  perMinute := Round(ms * 1000000 * 60);
-  perHour := Round(ms * 1000000 * 3600);
+  arr := [exp(PerMs), PerMs * PerMs,
+  PerMs, -1,
+  sqrt(PerMs), power(PerMs, 1/3),
+  ln(PerMs) / ln(2), -1];
 
-  arr := [ln(ms), sqrt(ms),
-  ms, ms * ln(ms), ms * ms, ms * ms * ms, exp(ms * ln(2)),
-  Factorial(Round(ms))];
+  // в каждой строке (кроме двух) сейчас максимальное количество
+  // операций, которые можно выполнить за 1 микросекунду
 
-  showmessage(round(ms).tostring);
+
+  i := 1;
+  while ln(i) * i <= perMs do
+  begin
+    i := i + 1;
+  end;
+  arr[3] := i - 1;
+
+  i := 2;
+  p := perMs;
+  while p > 2.0 do
+  begin
+    p := p / i;
+    i := i + 1;
+  end;
+  arr[7] := i - 2;
 
   for i := 0 to 7 do
   begin
-    if (i < 6) then
-    begin
-      Table.Cells[1, i + 1] := FormatFloat('0.###', arr[i]);
-    end
-    else
-    begin
-      Table.Cells[1, i + 1] := FormatFloat('0.0000E+', arr[i]);
-    end;
+    Table.Cells[1, i + 1] := arr[i].ToString;
   end;
+
+  // apparently we're supposed to
 
   exit;
 
